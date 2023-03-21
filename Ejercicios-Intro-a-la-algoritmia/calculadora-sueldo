@@ -1,0 +1,30 @@
+"""Diseñar un programa que calcule y muestre el sueldo neto de un empleado en base a su sueldo
+básico y su antigüedad en años. Si es soltero se le incrementa el sueldo en 5% del salario bruto
+por cada año de antigüedad, mientras que si es casado se le incrementa el sueldo en 7% del
+bruto por cada año de antigüedad. También se le realizan los siguientes descuentos:
+Jubilación: 11%, Obra Social: 3%, Sindicato: 3%.
+Como datos de entrada se ingresa por teclado el sueldo básico, antigüedad y estado civil (‘s’ o
+‘c’)."""
+
+
+sueldo_ba = int(input("Ingrese el sueldo basico: "))
+antiguedad = int(input("Ingrese la antiguedad: "))
+estado_civil = input("Ingrese su estado civil (s o c): ")
+sueldo_est = sueldo_ba
+if estado_civil == "s":
+    sueldo_est = ((sueldo_est * 5)/100) * antiguedad
+elif estado_civil == "c":
+    sueldo_est = ((sueldo_est * 0.7)/100) * antiguedad
+jubilacion = (sueldo_ba * 11) / 100
+obra_social = (sueldo_ba * 3) / 100
+sindicato = (sueldo_ba * 3) / 100
+sueldo_final = sueldo_ba + sueldo_est - jubilacion - obra_social - sindicato
+
+print("Estado civil: Casado")
+print("Sueldo basico                         antiguedad                 Descuentos               Importe")
+print(sueldo_ba,"                                   ",antiguedad,"                                     +",sueldo_est)
+print("                                                                 Jubilacion             -", jubilacion)
+print("                                                                 Obra social            -", obra_social)
+print("                                                                 Sindicato              -", sindicato)
+print("                                                                                          -------")
+print("                                                                 Sueldo neto             ", sueldo_final )
