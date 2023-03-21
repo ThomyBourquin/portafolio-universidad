@@ -1,0 +1,27 @@
+"""Una empresa factura a sus clientes el último día de cada mes. Si el cliente paga su factura 
+dentro de los primeros 10 días del mes siguiente, tiene un descuento de $120 o del 2% de la 
+factura, lo que resulte más conveniente para el cliente. Si paga en los siguientes 10 días del 
+mes deberá pagar el importe original de la factura, mientras que si paga después del día 20 
+deberá abonar una multa de $150 o del 10% de su factura, lo que resulte mayor. Escriba un 
+algoritmo que lea el número del cliente y el total de la factura, y emita un informe donde conste 
+el número del cliente y los tres importes que podrá abonar según la fecha de pago."""
+
+nro_cliente = int(input("Ingrese su nro de cliente: "))
+total_fac = int(input("Ingrese el importe total de su factura: "))
+
+descuento_diez = total_fac * 0.2
+
+if descuento_diez > 120:
+    precio_diez = total_fac - descuento_diez
+else:
+    precio_diez = total_fac - 120
+de_mas = total_fac * 0.1
+
+if de_mas > 150:
+    precio_post = total_fac + de_mas
+else:
+    precio_post = total_fac + 150
+print("Numero de cliente: ",nro_cliente)
+print("Si paga en los primeros diez su total es: ",precio_diez)
+print("Si paga en los 10 dias siguientes debe: ", total_fac)
+print("Si paga en los ultimos 10 dias debe: ", precio_post)
