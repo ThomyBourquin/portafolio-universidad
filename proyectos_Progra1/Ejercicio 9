@@ -1,0 +1,81 @@
+"""Un productor frutihorticola desea contabilizar sus cajones de naranjas segun el peso para poder
+cargar el camion de reparto. La empresa cuenta con N camiones, y cada uno puede transportar hasta media
+tonelada (500 kg). En un cajon caben 100 naranjas con un peso entre 200 y 300 gramos cada una. Si el peso de
+alguna naranja se encuentra fuera del rango indicado, se clasifica para procesar como jugo. Se
+solicita desarrollar un programa para ingresar la cantidad de naranjas cosechadas e informar cuantos
+cajones se pueden llenar, cuantas naranjas son para jugo y si hay algun sobrante de naranjas que deba
+considerarse para el siguiente reparto. Simular el peso de cada unidad generando un numero entero al
+azar entre 150 y 350.
+Ademas, se desea saber cuantos camiones se necesitan para transportar la cosecha, considerando que la
+ocupacion del camion no debe ser inferior al 80%; en caso contario el camion no sear despachado por su
+alto costo"""
+
+
+"""IMPORTANTE: PARA SABER CUANTO PESAN LOS CAJONES LE CALCULAMOS UN PROMEDIO DE 250 G POR NARANJA. POR LO TANTO CADA CAJON PESA
+25 KG, YA QUE LLEVAN 100 NARANJA.
+CADA CAMION PUEDE LLEVAR HASTA 500 KG, ENTONCES PUEDEN LLEVAR HASTA 20 CAJAS. UN CAMION NECESITA AL MENOS EL 80 % DE SU CAPACIDAD
+PARA SER DESPACHADO, POR ESO, PARA QUE PUEDA SALIR UN CAMION, DEBE TENER AL MENOS 16 CAJAS (80% DE 20)"""
+import random
+
+# generar peso y separar
+
+def pesaje (naran):
+    jugo2 = 0
+    naranjas2 = 0
+    for i in range (naran):
+        peso = random.randint(150,350)
+        if peso > 200 and peso < 300:
+            naranjas2 = naranjas2 + 1
+        else:
+            jugo2 = jugo2 + 1
+    return jugo2,naranjas2
+
+# meter a cajon o sobra
+
+def cajon (naranj):
+    cajones2= 0
+    sobra = 0
+    division = naranj // 100
+    resto = naranj % 100
+    cajones2 = cajones2 + division
+    sobra = sobra + resto
+    return cajones2, sobra
+
+# calculo de camiones necesarios
+
+def camiones (cajon):
+    camiones_completos = 0
+    sobran = 0
+    
+    division = cajon // 20
+    camiones_completos = camiones_completos + division
+    resto = cajon % 20
+    
+    if resto >= 16:
+        camiones_completos = camiones_completos + 1
+    else:
+        sobran = sobran + resto
+        
+    return camiones_completos,sobran
+
+# programa principal
+
+naranjas_jugo = 0
+naranjas_buenas = 0
+total_cajones = 0
+naranjas_sobrantes = 0
+cantidad_camiones = 0
+cajones_sobrantes = 0
+
+cant_naranjas = int(input("Ingrese la cantidad de naranjas: "))
+
+naranjas_jugo,naranjas_buenas = pesaje(cant_naranjas)
+
+total_cajones,naranjas_sobrantes = cajon(naranjas_buenas)
+
+cantidad_camiones,cajones_sobrantes = camiones(total_cajones)
+
+print("Con las", naranjas_buenas,"naranjas aptas se pueden llenar ", total_cajones,"cajones y sobran",naranjas_sobrantes,"naranjas")
+print("Luego,", naranjas_jugo," naranjas seran procesadas para jugo ya que no cumplen el peso solicitado")
+print("Se necesitan", cantidad_camiones,"para hacer el transporte de los cajones")
+print(cajones_sobrantes,"cajones no seran despachados debido a no completar un camion")
