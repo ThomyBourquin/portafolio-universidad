@@ -1,0 +1,33 @@
+"""Queremos guardar los nombres y las edades de los alumnos de un curso. Realiza un
+programa que introduzca el nombre y la edad de cada alumno. El proceso de lectura de
+datos terminará cuando se introduzca como nombre un asterisco (*) Al finalizar se
+mostrará los siguientes datos:
+• Todos lo alumnos mayores de edad.
+• Los alumnos mayores (los que tienen más edad)"""
+
+nombres = []
+edades = []
+mayores = []
+mase = []
+maxi = 0
+name = input("Ingrese el nombre del alumno: ")
+
+while name != "*" :
+    nombres.append(name)
+    edad = int(input("Ingrese la edad del alumno: "))
+    edades.append(edad)
+    name = input("Ingrese el nombre del alumno: ")
+    
+for i in range (len(edades)):
+    if edades[i] > 18:
+        mayores.append(nombres[i])
+for i in range (len(edades)):
+    if i == 0:
+        maxi = edades[i]
+    if edades [i] >= maxi:
+        mase.append(nombres[i])
+print(nombres)
+print(edades)
+print("Los mayores de edad son: ",mayores)
+print("Los mas grandes son: ",mase)
+        
