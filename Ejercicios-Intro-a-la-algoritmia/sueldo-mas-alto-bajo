@@ -1,0 +1,35 @@
+"""4. Una empresa cuenta con 5 empleados. Por cada empleado se lee su
+legajo y salario.
+
+a. Importe total de salarios pagados por la empresa.
+b. Salario promedio.
+c. Cantidad de empleados que ganan más de 20.000
+d. Legajo del empleado que más gana.
+e. Sueldo más bajo."""
+
+salarios_totales = 0
+mas_20k = 0
+sueldo_max = 0
+leg_max = 0
+sueldo_min = 0
+
+for i in range (1,6):
+    legajo = int(input("Ingrese su legajo: "))
+    salario = int(input("Ingrese su salario: "))
+    sueldo_min = salario
+    salarios_totales = salarios_totales + salario
+    if salario > 20000:
+        mas_20k = mas_20k + 1
+    if salario < sueldo_min:
+        sueldo_min = salario
+    if salario > sueldo_max:
+        sueldo_max = salario
+        leg_max =  legajo
+promedio = salarios_totales / 5
+print(" Salarios totales: ", salarios_totales)
+print(" Salario promedio: ",promedio)
+print(" Cantidad de empleados + 20k: ", mas_20k)
+print(" Legajo del mas pija: ", leg_max)
+print(" Sueldo mas bajo", sueldo_min)
+
+
