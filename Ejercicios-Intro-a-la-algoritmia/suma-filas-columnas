@@ -1,0 +1,47 @@
+"""Ejercicio 10
+Diseñar el algoritmo correspondiente a un programa, que:
+• Crea una tabla bidimensional de longitud 5x5 y nombre ‘matriz’.
+• Carga la tabla con valores numéricos enteros.
+• Suma todos los elementos de cada fila y todos los elementos de cada columna
+visualizando los resultados en pantalla."""
+import random
+
+def carga(fila_c,colu_c):
+    matriz = []
+    for i in range(fila_c):
+        matriz.append([])
+        for j in range(colu_c):
+            matriz[i].append(random.randint(1,20))
+    return matriz
+
+def suma_fila(matriz,fila_c,colu_c):
+    suma_uno = 0
+    for i in range(fila_c):
+        for j in range(colu_c):
+            suma_uno = suma_uno + matriz[i][j]
+        print("La suma de la fila",i+1,"es",suma_uno)
+        suma_uno = 0
+
+def suma_colu(matriz,fila_c,colu_c):
+    suma_uno = 0
+    for i in range(colu_c):
+        for j in range(fila_c):
+            suma_uno = suma_uno + matriz[j][i]
+        print("La suma de la columna",i+1,"es",suma_uno)
+        suma_uno = 0
+
+def impri(matriz):
+    for i in range (len(matriz)):
+        for j in range (len(matriz[i])):
+            print(matriz[i][j] , end ="   ")
+        print("\n")
+        
+def principal():
+    fila = 5
+    colu = 5
+    matriz_cargada = carga(fila,colu)
+    suma_fila(matriz_cargada,fila,colu)
+    suma_colu(matriz_cargada,fila,colu)
+    impri(matriz_cargada)
+    
+principal()
